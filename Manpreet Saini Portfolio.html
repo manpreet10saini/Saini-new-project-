@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manpreet Saini | Digital • Creative • Future</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- ==========================================
+         PORTFOLIO DATA (DO NOT EDIT MANUALLY)
+         Use the Admin Panel on the live site to 
+         update these values safely!
+    =========================================== -->
+    <script id="portfolio-data" type="application/json">
+    {
+        "heroFirst": "MANPREET",
+        "heroLast": "SAINI",
+        "tagline": "“Digital • Creative • Future”",
+        "aboutShort": "Bridging high-end cinematic aesthetics with modern front-end development.",
+        "aboutText": "I am a front-end developer and cinematic editor based in Kurukshetra. Currently pursuing my Bachelor of Commerce, I specialize in crafting digital experiences that merge clean, high-performance code with high-end visual aesthetics. From deep color grading in Lightroom to building dynamic web environments, I treat every project as a canvas.",
+        "igLink": "https://instagram.com/manpreet_saini._.07",
+        "igHandle": "@manpreet_saini._.07",
+        "snapLink": "https://www.snapchat.com/add/manpreet-saini0",
+        "snapHandle": "manpreet-saini0",
+        "photos": [
+            { "url": "images/01-night-drive.jpg", "title": "Night Drive", "category": "Cinematic" },
+            { "url": "images/02-portrait-series.png", "title": "Portrait Series", "category": "Color Grade" },
+            { "url": "images/03-orange-portrait.png", "title": "Orange Tones", "category": "Creative" },
+            { "url": "images/04-orange-earphones.png", "title": "Product Shoot", "category": "Commercial" },
+            { "url": "images/05-city-look.png", "title": "City Look", "category": "Urban" },
+            { "url": "images/06-driving.png", "title": "Motion Blur", "category": "Automotive" },
+            { "url": "images/07-dark-portrait.png", "title": "Dark Portrait", "category": "Studio" },
+            { "url": "images/08-music-world.png", "title": "Music World", "category": "Conceptual" },
+            { "url": "images/09-mirror-portrait.png", "title": "Mirror Portrait", "category": "Editorial" }
+        ]
+    }
+    </script>
+
+    <style>
+        /* ==========================================
+           CSS DESIGN & STYLES
+        =========================================== */
+        :root {
+            --bg-dark: #050505;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent-magenta: rgba(255, 0, 128, 0.4);
+            --accent-purple: rgba(128, 0, 255, 0.4);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --font-display: 'Syncopate', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
+        body { overflow-x: hidden; position: relative; width: 100vw; }
+
+        /* Cinematic Background */
+        .cinematic-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100svh; z-index: -1; overflow: hidden; pointer-events: none; }
+        .grid-overlay { width: 100%; height: 100%; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px); mask-image: radial-gradient(circle at center, black 40%, transparent 100%); -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%); }
+        .glow-orb { position: absolute; width: 50vw; height: 50vw; border-radius: 50%; filter: blur(100px); opacity: 0.5; animation: float 10s infinite alternate ease-in-out; }
+        .glow-orb.magenta { background: var(--accent-magenta); top: -10%; left: -10%; }
+        .glow-orb.purple { background: var(--accent-purple); bottom: -10%; right: -10%; animation-delay: -5s; }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(5%, 5%) scale(1.1); } }
+
+        /* Layout & Typography */
+        section { padding: 6rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.5rem); text-align: center; margin-bottom: 3rem; letter-spacing: 2px; }
+
+        /* Navigation */
+        .glass-nav { position: fixed; top: 1rem; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 600px; background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 50px; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .glass-nav a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; margin-left: 1.5rem; transition: color 0.3s; }
+        .glass-nav a:hover { color: var(--text-muted); }
+        .logo { font-family: var(--font-display); font-weight: 700; letter-spacing: 2px; }
+
+        /* Hero */
+        .hero { height: 100svh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1rem; }
+        .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 10vw, 7rem); line-height: 1.1; letter-spacing: -2px; }
+        .outline-text { color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5); }
+        .tagline { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-muted); margin: 1.5rem 0 1rem; letter-spacing: 2px; text-transform: uppercase; }
+        .short-desc { max-width: 500px; margin: 0 auto 2.5rem; color: var(--text-muted); font-weight: 300; }
+
+        /* Buttons */
+        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 4px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; font-family: var(--font-body); letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem; transition: all 0.3s ease; }
+        .btn.primary { background: #fff; color: #000; }
+        .btn.primary:hover { background: #ddd; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+        .btn.secondary { background: transparent; border: 1px solid var(--glass-border); color: #fff; }
+        .btn.secondary:hover { background: var(--glass-bg); }
+        .hero-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+        /* Gallery Grid */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .gallery-item { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 4/5; cursor: pointer; background: #111; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .item-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem 1rem 1rem; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); transform: translateY(20px); opacity: 0; transition: all 0.4s ease; }
+        .gallery-item:hover .item-overlay { transform: translateY(0); opacity: 1; }
+        .item-overlay p { color: var(--accent-magenta); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; margin-bottom: 0.3rem;}
+
+        /* Lightbox Viewer */
+        .lightbox { position: fixed; top: 0; left: 0; width: 100vw; height: 100svh; background: rgba(0,0,0,0.95); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; backdrop-filter: blur(10px); }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        .lightbox img { max-width: 90vw; max-height: 80svh; object-fit: contain; border-radius: 4px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+        .close-btn { position: absolute; top: 2rem; right: 2rem; font-size: 3rem; color: #fff; cursor: pointer; line-height: 1; }
+        .lightbox-caption { position: absolute; bottom: 2rem; text-align: center; width: 100%; font-family: var(--font-display); font-size: 1.2rem; }
+
+        /* Panels & Cards */
+        .glass-panel { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .social-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 12px; text-align: center; text-decoration: none; color: #fff; transition: all 0.3s; }
+        .glass-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-5px); }
+        .contact-cta { text-align: center; }
+
+        /* Animations */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* Custom Cursor (Desktop) */
+        @media (pointer: fine) {
+            .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+            .cursor-dot { width: 8px; height: 8px; background: white; }
+            .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.5); transition: width 0.2s, height 0.2s; }
+        }
+
+        /* Footer */
+        footer { text-align: center; padding: 4rem 1rem 2rem; }
+        .footer-logo { font-family: var(--font-display); font-size: 2rem; margin-bottom: 1rem; }
+        .footer-links { margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
+        .footer-links a:hover { color: #fff; }
+
+        /* Admin Overlay CSS */
+        #admin-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100svh; background: rgba(0,0,0,0.98); z-index: 10000; display: none; overflow-y: auto; padding: 2rem 1rem; backdrop-filter: blur(20px); }
+        .admin-container { max-width: 600px; margin: 0 auto; background: #0a0a0a; padding: 2rem; border-radius: 12px; border: 1px solid var(--accent-magenta); box-shadow: 0 0 50px rgba(255,0,128,0.1); }
+        .admin-group { margin-bottom: 1.5rem; }
+        .admin-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .admin-input, .admin-textarea { width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid #333; color: #fff; border-radius: 4px; font-family: var(--font-body); transition: 0.3s; }
+        .admin-input:focus, .admin-textarea:focus { border-color: var(--accent-magenta); outline: none; }
+        .admin-textarea { min-height: 120px; resize: vertical; }
+        .photo-entry { background: #111; padding: 1.5rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid #222; position: relative; }
+        .remove-btn { background: #ff3333; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: bold; margin-top: 1rem; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .glass-nav { width: 90%; padding: 1rem; }
+            .glass-nav .nav-links { display: none; }
+            .hero-btns { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .glass-panel { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.5rem; }
+            .item-overlay { opacity: 1; transform: none; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Cinematic Background -->
+    <div class="cinematic-bg">
+        <div class="glow-orb magenta"></div>
+        <div class="glow-orb purple"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="logo">MS</div>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Public Content -->
+    <div id="public-view">
+        <!-- Hero Section -->
+        <header class="hero" id="home">
+            <div class="hero-content fade-up">
+                <h1 class="outline-text" id="render-heroFirst">MANPREET</h1>
+                <h1 class="solid-text" id="render-heroLast">SAINI</h1>
+                <p class="tagline" id="render-tagline">“Digital • Creative • Future”</p>
+                <p class="short-desc" id="render-aboutShort">Bridging high-end cinematic aesthetics with modern front-end development.</p>
+                <div class="hero-btns">
+                    <a href="#work" class="btn primary">View My Work</a>
+                    <a href="#about" class="btn secondary">About Me</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Portfolio Section -->
+        <section id="work" class="portfolio">
+            <h2 class="section-title fade-up">Selected Work</h2>
+            <div class="gallery-grid" id="render-gallery">
+                <!-- Javascript will inject photos here -->
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+                <span class="close-btn" id="close-lightbox">&times;</span>
+                <img src="" alt="Fullscreen View" id="lightbox-img">
+                <h3 class="lightbox-caption" id="lightbox-caption"></h3>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <h2 class="section-title fade-up">About Me</h2>
+            <div class="glass-panel fade-up">
+                <div class="about-text">
+                    <h3 style="font-family: var(--font-display); margin-bottom: 1rem;">Manpreet Saini</h3>
+                    <p id="render-aboutText" style="line-height: 1.8; color: var(--text-muted);"></p>
+                </div>
+                <div class="about-stats" style="display: flex; flex-direction: column; gap: 1.5rem; justify-content: center;">
+                    <div style="border-left: 2px solid var(--accent-magenta); padding-left: 1rem;">
+                        <h4 style="color: #fff; margin-bottom: 0.3rem;">Creative</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Cinematic Photo & Video Editing</p>
+                    </div>
+                    <div style="border-left: 2px solid var(--accent-purple); padding-left: 1rem;">
+                        <h4 style="color: #fff; margin-bottom: 0.3rem;">Curious</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Front-End Web Development</p>
+                    </div>
+                    <div style="border-left: 2px solid var(--accent-magenta); padding-left: 1rem;">
+                        <h4 style="color: #fff; margin-bottom: 0.3rem;">Always Learning</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Pushing visual boundaries</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <h2 class="section-title fade-up">Connect</h2>
+            <div class="social-cards fade-up">
+                <a href="#" target="_blank" class="glass-card" id="render-igLinkCard">
+                    <h3 style="margin-bottom: 0.5rem; font-family: var(--font-display);">Instagram</h3>
+                    <p id="render-igHandle" style="color: var(--accent-magenta);">@handle</p>
+                </a>
+                <a href="#" target="_blank" class="glass-card" id="render-snapLinkCard">
+                    <h3 style="margin-bottom: 0.5rem; font-family: var(--font-display);">Snapchat</h3>
+                    <p id="render-snapHandle" style="color: var(--accent-purple);">handle</p>
+                </a>
+            </div>
+            <div class="contact-cta fade-up">
+                <a href="#" target="_blank" class="btn primary" id="render-igLinkBtn">Message on Instagram</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-logo">MS</div>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 Manpreet Saini. Built for the Future.</p>
+            <div class="footer-links">
+                <a href="#home">Back to Top</a>
+                <!-- ADMIN TRIGGER -->
+                <a onclick="promptAdmin()" style="color: rgba(255,255,255,0.2);">Admin Panel</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==========================================
+         ADMIN PANEL OVERLAY
+    =========================================== -->
+    <div id="admin-overlay">
+        <div class="admin-container">
+            <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 1rem; text-align: left;">CMS Admin</h2>
+            <p style="color: var(--accent-magenta); margin-bottom: 2rem; font-size: 0.9rem; line-height: 1.5;">
+                Welcome Manpreet. Edit your details below. When you click "Save & Download", a new <b>index.html</b> file will be generated. Upload it to GitHub to update your live site.
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="admin-group">
+                    <label>First Name</label>
+                    <input type="text" id="edit-heroFirst" class="admin-input">
+                </div>
+                <div class="admin-group">
+                    <label>Last Name</label>
+                    <input type="text" id="edit-heroLast" class="admin-input">
+                </div>
+            </div>
+            
+            <div class="admin-group">
+                <label>Tagline</label>
+                <input type="text" id="edit-tagline" class="admin-input">
+            </div>
+            <div class="admin-group">
+                <label>Short Description (Hero)</label>
+                <input type="text" id="edit-aboutShort" class="admin-input">
+            </div>
+            <div class="admin-group">
+                <label>Full About Me</label>
+                <textarea id="edit-aboutText" class="admin-textarea"></textarea>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="admin-group">
+                    <label>Instagram Handle</label>
+                    <input type="text" id="edit-igHandle" class="admin-input">
+                </div>
+                <div class="admin-group">
+                    <label>Instagram URL</label>
+                    <input type="text" id="edit-igLink" class="admin-input">
+                </div>
+                <div class="admin-group">
+                    <label>Snapchat Handle</label>
+                    <input type="text" id="edit-snapHandle" class="admin-input">
+                </div>
+                <div class="admin-group">
+                    <label>Snapchat URL</label>
+                    <input type="text" id="edit-snapLink" class="admin-input">
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; font-family: var(--font-display);">Portfolio Gallery</h3>
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1.5rem;">For images, use paths like <code>images/photo.jpg</code> (if uploaded to your folder) or direct links like <code>https://imgur.com/...</code></p>
+            
+            <div id="edit-photos-container"></div>
+            
+            <button class="btn secondary" onclick="addPhotoField()" style="width: 100%; margin-bottom: 3rem; border-style: dashed;">+ Add Another Photo</button>
+
+            <div style="display: flex; gap: 1rem; position: sticky; bottom: 0; background: #0a0a0a; padding-top: 1rem; border-top: 1px solid #333;">
+                <button class="btn primary" onclick="saveAndExport()" style="flex: 2;">Save & Download</button>
+                <button class="btn secondary" onclick="closeAdmin()" style="flex: 1;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         CORE JAVASCRIPT LOGIC
+    =========================================== -->
+    <script>
+        let siteData = {};
+
+        // 1. Initialize Site from JSON Data Block
+        function initSite() {
+            // Parse JSON
+            const dataScript = document.getElementById('portfolio-data').textContent;
+            siteData = JSON.parse(dataScript);
+
+            // Populate Text Fields
+            document.getElementById('render-heroFirst').textContent = siteData.heroFirst;
+            document.getElementById('render-heroLast').textContent = siteData.heroLast;
+            document.getElementById('render-tagline').textContent = siteData.tagline;
+            document.getElementById('render-aboutShort').textContent = siteData.aboutShort;
+            document.getElementById('render-aboutText').textContent = siteData.aboutText;
+            
+            // Populate Links
+            document.getElementById('render-igLinkCard').href = siteData.igLink;
+            document.getElementById('render-igLinkBtn').href = siteData.igLink;
+            document.getElementById('render-igHandle').textContent = siteData.igHandle;
+            document.getElementById('render-snapLinkCard').href = siteData.snapLink;
+            document.getElementById('render-snapHandle').textContent = siteData.snapHandle;
+
+            // Render Gallery
+            const gallery = document.getElementById('render-gallery');
+            gallery.innerHTML = '';
+            siteData.photos.forEach(photo => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item fade-up';
+                div.innerHTML = `
+                    <img src="${photo.url}" alt="${photo.title}" loading="lazy">
+                    <div class="item-overlay">
+                        <p>${photo.category}</p>
+                        <h3>${photo.title}</h3>
+                    </div>
+                `;
+                div.addEventListener('click', () => openLightbox(photo.url, photo.title));
+                gallery.appendChild(div);
+            });
+
+            // Re-trigger observer for new dynamic gallery items
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        }
+
+        // 2. Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        
+        function openLightbox(src, title) {
+            lightboxImg.src = src;
+            lightboxCaption.textContent = title;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => { lightboxImg.src = ''; }, 400);
+        }
+
+        document.getElementById('close-lightbox').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
+
+        // 3. Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // 4. Custom Cursor (Desktop Only)
+        if (matchMedia('(pointer: fine)').matches) {
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            window.addEventListener('mousemove', (e) => {
+                cursorDot.style.left = `${e.clientX}px`;
+                cursorDot.style.top = `${e.clientY}px`;
+                setTimeout(() => {
+                    cursorOutline.style.left = `${e.clientX}px`;
+                    cursorOutline.style.top = `${e.clientY}px`;
+                }, 50);
+            });
+        }
+
+        // ==========================================
+        // ADMIN PANEL LOGIC
+        // ==========================================
+        
+        // Admin Authentication (Simple prompt check)
+        function promptAdmin() {
+            const pwd = prompt("Enter Admin Password:");
+            // 🔒 DEFAULT PASSWORD: change "manpreet2026" to whatever you want
+            if (pwd === "manpreet2026") {
+                openAdmin();
+            } else if (pwd !== null) {
+                alert("Incorrect Password.");
+            }
+        }
+
+        function openAdmin() {
+            document.getElementById('admin-overlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            // Populate forms with current data
+            document.getElementById('edit-heroFirst').value = siteData.heroFirst;
+            document.getElementById('edit-heroLast').value = siteData.heroLast;
+            document.getElementById('edit-tagline').value = siteData.tagline;
+            document.getElementById('edit-aboutShort').value = siteData.aboutShort;
+            document.getElementById('edit-aboutText').value = siteData.aboutText;
+            document.getElementById('edit-igLink').value = siteData.igLink;
+            document.getElementById('edit-igHandle').value = siteData.igHandle;
+            document.getElementById('edit-snapLink').value = siteData.snapLink;
+            document.getElementById('edit-snapHandle').value = siteData.snapHandle;
+
+            // Populate photo fields
+            const photoContainer = document.getElementById('edit-photos-container');
+            photoContainer.innerHTML = '';
+            siteData.photos.forEach(photo => {
+                addPhotoField(photo.url, photo.title, photo.category);
+            });
+        }
+
+        function closeAdmin() {
+            document.getElementById('admin-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function addPhotoField(url = '', title = '', category = '') {
+            const container = document.getElementById('edit-photos-container');
+            const div = document.createElement('div');
+            div.className = 'photo-entry';
+            div.innerHTML = `
+                <input type="text" class="admin-input p-url" placeholder="Image URL (e.g., images/photo.jpg)" value="${url}" style="margin-bottom:0.5rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                    <input type="text" class="admin-input p-title" placeholder="Title" value="${title}">
+                    <input type="text" class="admin-input p-cat" placeholder="Category" value="${category}">
+                </div>
+                <button class="remove-btn" onclick="this.parentElement.remove()">Delete Photo</button>
+            `;
+            container.appendChild(div);
+        }
+
+        // Save Data and Export new HTML file
+        function saveAndExport() {
+            // 1. Gather new data from inputs
+            siteData.heroFirst = document.getElementById('edit-heroFirst').value;
+            siteData.heroLast = document.getElementById('edit-heroLast').value;
+            siteData.tagline = document.getElementById('edit-tagline').value;
+            siteData.aboutShort = document.getElementById('edit-aboutShort').value;
+            siteData.aboutText = document.getElementById('edit-aboutText').value;
+            siteData.igLink = document.getElementById('edit-igLink').value;
+            siteData.igHandle = document.getElementById('edit-igHandle').value;
+            siteData.snapLink = document.getElementById('edit-snapLink').value;
+            siteData.snapHandle = document.getElementById('edit-snapHandle').value;
+
+            siteData.photos = [];
+            document.querySelectorAll('.photo-entry').forEach(entry => {
+                const url = entry.querySelector('.p-url').value;
+                if(url) {
+                    siteData.photos.push({
+                        url: url,
+                        title: entry.querySelector('.p-title').value,
+                        category: entry.querySelector('.p-cat').value
+                    });
+                }
+            });
+
+            // 2. Update the hidden JSON block with new data
+            document.getElementById('portfolio-data').textContent = JSON.stringify(siteData, null, 4);
+
+            // 3. Close admin and reset views so they don't get saved in an "open" state
+            closeAdmin();
+            
+            // Clean up animation classes temporarily so they trigger correctly on the next load
+            document.querySelectorAll('.visible').forEach(el => el.classList.remove('visible'));
+            
+            // Remove dynamically generated gallery items so they don't duplicate on next load
+            document.getElementById('render-gallery').innerHTML = '';
+
+            // 4. Generate the final HTML string
+            const updatedHTML = "<!DOCTYPE html>\n<html lang=\"en\">\n" + document.documentElement.innerHTML + "\n</html>";
+
+            // 5. Trigger Browser Download
+            const blob = new Blob([updatedHTML], { type: 'text/html' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // 6. Reload the site state visually for the user still looking at the screen
+            initSite();
+            
+            alert("Success! Your new index.html file has been downloaded.\n\nUpload this exact file to your GitHub repository (replacing the old one) to make your changes live.");
+        }
+
+        // Run Initialization on Load
+        window.addEventListener('DOMContentLoaded', initSite);
+
+    </script>
+</body>
+</html>
